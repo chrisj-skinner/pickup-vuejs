@@ -11,11 +11,6 @@
           <span>List an item</span>
         </router-link>
       </li>
-      <li>
-        <a>
-          <span>Videos</span>
-        </a>
-      </li>
     </ul>
   </nav>
 </template>
