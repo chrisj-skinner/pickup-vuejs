@@ -6,6 +6,10 @@
     <div class="content">
       <div class="links">
         <router-link :to="{ name: 'create'}" class="button is-link is-outlined">List an item</router-link>
+        <router-link
+          :to="{ name: 'id', params: {id: '1'} }"
+          class="button is-link is-outlined"
+        >Item 1</router-link>
       </div>
     </div>
   </div>
