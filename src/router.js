@@ -21,6 +21,12 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: () =>
         import(/* webpackChunkName: "create" */ './views/create.vue')
+    },
+    {
+      path: '/item/:id',
+      name: 'id',
+      component: () => import('./views/item/_id.vue'),
+      props: true
     }
   ]
 })
