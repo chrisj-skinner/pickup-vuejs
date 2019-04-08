@@ -1,8 +1,5 @@
 <template>
-  <div class="has-text-centered">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <h1 class="title is-size-1 has-text-weight-normal is-spaced">..pickup..</h1>
-    <h2 class="subtitle is-size-3 has-text-weight-normal">Pickup app built with vuejs</h2>
+  <div class="has-text-centered section">
     <div class="columns">
       <ItemList class="column is-half"/>
     </div>
@@ -19,4 +16,9 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped>
+.section {
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+}
+</style>
