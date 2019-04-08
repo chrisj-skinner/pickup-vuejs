@@ -1,7 +1,13 @@
 <template>
-  <div>
-    <h1>Showing item #{{ id }}</h1>
-  </div>
+  <section class="section">
+    <article>
+      <figure class="image is-square">
+        <img src="https://bulma.io/images/placeholders/128x128.png">
+      </figure>
+      <h4 class="has-text-left">Title for item #{{ id }}</h4>
+      <p class="has-text-left is-size-7">date @time</p>
+    </article>
+  </section>
 </template>
 
 <script>
