@@ -6,9 +6,7 @@
       </figure>
       <h4 class="has-text-left">Title for item #{{ id }}</h4>
       <p class="has-text-left is-size-7">date @time</p>
-      <p
-        class="has-text-left"
-      >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure quis, cumque quae, velit aspernatur provident ex est temporibus tempore at doloremque adipisci vel voluptatem quisquam?</p>
+      <p class="has-text-left">Some description here</p>
     </article>
   </section>
 </template>
@@ -23,5 +21,4 @@ export default {
 }
 </script>
 
-<style scoped>
-</style>
+<style></style>
