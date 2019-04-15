@@ -7,7 +7,30 @@
       "time": "10:00",
       "location": "London",
       "description": "A truck toy.",
-      "category": "Toys"
+      "category": "Toys",
+      "images": [
+        {
+          "src": "https://bulma.io/images/placeholders/128x128.png",
+          "width": 128,
+          "height": 128
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Panda",
+      "date": "Aug 26 2018",
+      "time": "11:00",
+      "location": "Bristol",
+      "description": "A toy panda.",
+      "category": "Toys",
+      "images": [
+        {
+          "src": "https://bulma.io/images/placeholders/128x128.png",
+          "width": 128,
+          "height": 128
+        }
+      ]
     }
   ]
 }
