@@ -23,7 +23,6 @@ export default {
   created() {
     ItemService.getItems()
       .then(response => {
-        console.log(response.data)
         this.items = response.data
       })
       .catch(error => {
