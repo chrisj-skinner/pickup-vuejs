@@ -1,5 +1,5 @@
 <template>
-  <div class="has-text-centered section">
+  <div class="has-text-centered">
     <div class="columns">
       <ItemCard v-for="item in items" :key="item.id" :item="item" class="column is-half"/>
     </div>
@@ -12,8 +12,7 @@ import ItemService from '@/services/ItemService.js'
 
 export default {
   components: {
-    ItemCard,
-    ItemService
+    ItemCard
   },
   data() {
     return {
@@ -32,9 +31,17 @@ export default {
 }
 </script>
 
-<style scoped>
-.section {
-  padding-left: 0.8rem;
-  padding-right: 0.8rem;
+<style lang="scss" scoped>
+.columns {
+  overflow: scroll;
+  overflow-y: hidden;
+  &::-webkit-scrollbar {
+    width: 1em;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #00d1b2;
+    outline: none;
+  }
 }
 </style>
