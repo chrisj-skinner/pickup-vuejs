@@ -15,5 +15,8 @@ export default {
   },
   getItem(id) {
     return apiClient.get('/items/' + id)
+  },
+  postItem(item) {
+    return apiClient.post('/items', item)
   }
 }
