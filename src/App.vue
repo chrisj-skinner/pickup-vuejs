@@ -44,6 +44,6 @@ header {
   padding: 0.8rem;
 }
 .section {
-  padding-top: 1.5rem;
+  padding: 0 0.8rem 0.8rem 0.8rem;
 }
 </style>
