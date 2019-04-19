@@ -3,7 +3,7 @@
     <router-link :to="{ name: 'id', params: { id: item.id } }">
       <article>
         <figure class="image is-square">
-          <img :src="image.src" :width="image.width" :height="image.height">
+          <img src="https://bulma.io/images/placeholders/128x128.png">
         </figure>
         <div class="box notification is-info"></div>
         <header>
@@ -20,11 +20,6 @@ export default {
   props: {
     item: {
       type: Object
-    }
-  },
-  data() {
-    return {
-      image: this.item.images[0]
     }
   }
 }
