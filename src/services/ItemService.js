@@ -10,8 +10,8 @@ const apiClient = axios.create({
 })
 
 export default {
-  getItems() {
-    return apiClient.get('/items')
+  getItems(perpage, page) {
+    return apiClient.get('/items?_limit=' + perpage + '&_page=' + page)
   },
   getItem(id) {
     return apiClient.get('/items/' + id)
