@@ -2,6 +2,7 @@
   "items": [
     {
       "id": 1,
+      "user": "abcd123",
       "title": "Truck",
       "date": "Aug 28 2018",
       "time": "10:00",
@@ -18,6 +19,7 @@
     },
     {
       "id": 2,
+      "user": "efgh456",
       "title": "Panda",
       "date": "Aug 26 2018",
       "time": "11:00",
@@ -31,6 +33,56 @@
           "height": 128
         }
       ]
+    },
+    {
+      "id": 7772040,
+      "title": "Washing Machine",
+      "date": "",
+      "time": "",
+      "location": "Oxford",
+      "description": "Not working",
+      "category": "Applicance",
+      "images": []
+    },
+    {
+      "id": 9140406,
+      "title": "Large Dining Table",
+      "date": "2019-04-18T18:40:49.599Z",
+      "location": "Brighton",
+      "description": "Missing one leg",
+      "category": "Funiture"
+    },
+    {
+      "id": 787327,
+      "title": "T-shirt",
+      "date": "2019-04-18T18:41:51.295Z",
+      "location": "London",
+      "description": "Grey with one stain on the left sleeve",
+      "category": "Clothes"
+    },
+    {
+      "id": 4918597,
+      "title": "Toaster",
+      "date": "2019-04-18T18:43:44.795Z",
+      "location": "Liverpool",
+      "description": "Works but it missing the plug",
+      "category": "Applicance"
+    },
+    {
+      "id": 8254363,
+      "title": "Grandad jumper",
+      "date": "2019-04-18T18:47:17.306Z",
+      "location": "Cardiff",
+      "description": "4 holes but still very warm",
+      "category": "Clothes"
+    },
+    {
+      "id": 1420019,
+      "title": "Lazy boy chair",
+      "date": "2019-04-18T18:48:19.258Z",
+      "location": "Staines",
+      "description": "Well used with coffee cup holder",
+      "category": "Funiture"
     }
   ]
 }
