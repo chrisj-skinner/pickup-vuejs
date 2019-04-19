@@ -9,6 +9,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     items: [],
+    total: 0,
     categories: ['dropdown', 'Applicance', 'Clothes', 'Funiture', 'Toys']
   },
   mutations: {
@@ -17,6 +18,9 @@ export default new Vuex.Store({
     },
     SET_ITEMS(state, items) {
       state.items = items
+    },
+    SET_TOTAL(state, total) {
+      state.total = total
     }
   },
   actions: {
@@ -25,10 +29,11 @@ export default new Vuex.Store({
         commit('ADD_ITEM', item)
       })
     },
-    fetchItems({ commit }) {
-      ItemService.getItems()
+    fetchItems({ commit }, { perpage, page }) {
+      ItemService.getItems(perpage, page)
         .then(response => {
           commit('SET_ITEMS', response.data)
+          commit('SET_TOTAL', response.headers['x-total-count'])
         })
         .catch(error => {
           console.log('There was an error: ' + error.response)
@@ -38,9 +43,6 @@ export default new Vuex.Store({
   getters: {
     getItemById: state => id => {
       return state.items.find(item => item.id === id)
-    },
-    imageLength: state => {
-      return state.images.length
     }
   }
 })
