@@ -4,7 +4,10 @@
       <div class="column is-half">
         <Header/>
         <!-- eslint-disable-next-line -->
-        <router-view class="has-border-primary no-border-top no-border-bottom section"/>
+        <router-view
+          :key="$route.fullPath"
+          class="has-border-primary no-border-top no-border-bottom section"
+        />
         <!-- eslint-disable-next-line -->
         <NavBar/>
       </div>
