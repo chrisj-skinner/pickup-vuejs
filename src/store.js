@@ -12,12 +12,14 @@ export default new Vuex.Store({
     inView: 0,
     total: 0,
     categories: ['dropdown', 'Applicance', 'Clothes', 'Funiture', 'Toys'],
-    item: {}
+    item: {},
+    loadingStatus: 'notLoading'
   },
   mutations: {
     ADD_ITEM(state, item) {
       state.items.push(item)
     },
+    // merges each API call array of items into the state.items []
     SET_ITEMS(state, items) {
       if (state.items.length !== 0) {
         state.items = state.items.concat(items)
@@ -25,14 +27,20 @@ export default new Vuex.Store({
         state.items = items
       }
     },
+    // used to calculate when to disabled the show more button
     SET_TOTAL(state, total) {
       state.total = total
     },
+    // this sets the current number of items in view
+    // used to calculate a _start point in API call
     SET_INVIEW(state, start) {
       state.inView = start
     },
     SET_ITEM(state, item) {
       state.item = item
+    },
+    SET_LOADING_STATUS(state, status) {
+      state.loadingStatus = status
     }
   },
   actions: {
@@ -47,8 +55,10 @@ export default new Vuex.Store({
       if (this.state.inView !== start) {
         start = this.state.inView
       }
+      commit('SET_LOADING_STATUS', 'loading')
       ItemService.getItems(start, percall)
         .then(response => {
+          commit('SET_LOADING_STATUS', 'notLoading')
           commit('SET_ITEMS', response.data)
           commit('SET_INVIEW', start + increment)
           commit('SET_TOTAL', response.headers['x-total-count'])
@@ -58,13 +68,16 @@ export default new Vuex.Store({
         })
     },
     fetchItem({ commit, getters }, id) {
+      // first try to get the current item from the store
+      // saves an API call
       const item = getters.getItemById(id)
-
       if (item) {
         commit('SET_ITEM', id)
       } else {
+        commit('SET_LOADING_STATUS', 'loading')
         ItemService.getItem(id)
           .then(response => {
+            commit('SET_LOADING_STATUS', 'notLoading')
             commit('SET_ITEM', response.data)
           })
           .catch(() => {
