@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   props: {
@@ -41,11 +41,12 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch('item/fetchItem', this.id)
+    this.fetchItem(this.id)
   },
   computed: mapState({
     item: state => state.item.item
-  })
+  }),
+  methods: mapActions('item', ['fetchItem'])
 }
 </script>
 
