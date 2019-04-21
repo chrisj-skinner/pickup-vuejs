@@ -3,7 +3,12 @@
     <div class="columns item-card-wrap">
       <ItemCard v-for="item in items" :key="item.id" :item="item" class="column is-half item-card"/>
     </div>
-    <a class="button is-rounded" @click="fetchItems(true)" :disabled="moreDisabled">Show more</a>
+    <button
+      @click="fetchItems(true)"
+      class="button is-rounded"
+      :class="{ 'is-loading': isLoading}"
+      :disabled="moreDisabled"
+    >Show more</button>
   </div>
 </template>
 
@@ -20,16 +25,17 @@ export default {
   },
   computed: {
     moreDisabled() {
-      console.log(this.total)
-      console.log(this.items.length)
-
       return this.total == this.items.length
+    },
+    isLoading() {
+      return this.$store.state.loadingStatus === 'loading'
     },
     ...mapState({ items: 'items', total: 'total' })
   },
   methods: {
     fetchItems(more) {
-      // prevent fetchItems from firing when using the back / home buttons
+      // only call on intital load or when show more is clicked
+      // prevents call when navigating back to the root page /
       if (
         (more === false && this.$store.state.inView == 0) ||
         (more === true && this.$store.state.inView !== 0)
@@ -47,7 +53,7 @@ export default {
   padding-bottom: 1rem;
   &-wrap {
     flex-wrap: wrap;
-    max-height: 400px;
+    height: 300px;
     overflow: scroll;
     overflow-x: hidden;
     &::-webkit-scrollbar {
