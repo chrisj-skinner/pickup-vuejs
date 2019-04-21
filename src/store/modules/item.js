@@ -1,5 +1,7 @@
 import ItemService from '@/services/ItemService.js'
 
+export const namespaced = true
+
 export const state = {
   items: [],
   inView: 0,
