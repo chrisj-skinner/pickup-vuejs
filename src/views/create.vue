@@ -42,7 +42,7 @@ export default {
   methods: {
     createItem(item) {
       this.$store
-        .dispatch('createItem', this.item)
+        .dispatch('item/createItem', this.item)
         .then(() => {
           this.$router.push({ name: 'id', params: { id: this.item.id } })
           this.item = this.createFreshItemObject()

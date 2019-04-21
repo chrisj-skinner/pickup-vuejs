@@ -41,7 +41,7 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch('fetchItem', this.id)
+    this.$store.dispatch('item/fetchItem', this.id)
   },
   computed: mapState({
     item: state => state.item.item

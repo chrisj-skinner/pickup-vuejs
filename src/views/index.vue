@@ -41,7 +41,7 @@ export default {
         (more === false && this.$store.state.item.inView == 0) ||
         (more === true && this.$store.state.item.inView !== 0)
       ) {
-        this.$store.dispatch('fetchItems', { percall: 2 })
+        this.$store.dispatch('item/fetchItems', { percall: 2 })
       }
     }
   }
