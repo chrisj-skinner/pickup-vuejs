@@ -21,10 +21,11 @@
         </div>
       </div>
       <header>
-        <h1 class="has-text-left title is-2">{{ item.title }}</h1>
-        <p class="has-text-left subtitle is-4">Listed: {{ item.date }}</p>
+        <h1 class="has-text-left title is-3">{{ item.title }}</h1>
+        <p class="has-text-left subtitle is-5">Listed: {{ item.date }}</p>
       </header>
       <hr>
+      <p class="has-text-left is-size-5">Description:</p>
       <p class="has-text-left is-size-6">{{ item.description }}</p>
     </article>
   </section>
@@ -42,7 +43,9 @@ export default {
   created() {
     this.$store.dispatch('fetchItem', this.id)
   },
-  computed: mapState(['item'])
+  computed: mapState({
+    item: state => state.item.item
+  })
 }
 </script>
 
