@@ -3,9 +3,7 @@
     <div class="columns item-card-wrap">
       <ItemCard v-for="item in items" :key="item.id" :item="item" class="column is-half item-card"/>
     </div>
-    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-      <button @click="fetchItems(true)" :disabled="moreDisabled">Show more</button>
-    </nav>
+    <a class="button is-rounded" @click="fetchItems(true)" :disabled="moreDisabled">Show more</a>
   </div>
 </template>
 
