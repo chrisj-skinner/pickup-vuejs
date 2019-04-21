@@ -1,7 +1,7 @@
 <template>
   <div class="has-text-centered">
     <div class="columns item-card-wrap">
-      <ItemCard v-for="item in items" :key="item.id" :item="item" class="column is-half item-card"/>
+      <ItemCard v-for="item in item.items" :key="item.id" :item="item" class="column is-half"/>
     </div>
     <button
       @click="fetchItems(true)"
@@ -25,20 +25,21 @@ export default {
   },
   computed: {
     moreDisabled() {
-      return this.total == this.items.length
+      return this.item.total == this.item.items.length
+      // return false
     },
     isLoading() {
-      return this.$store.state.loadingStatus === 'loading'
+      return this.item.loadingStatus === 'loading'
     },
-    ...mapState({ items: 'items', total: 'total' })
+    ...mapState(['item'])
   },
   methods: {
     fetchItems(more) {
       // only call on intital load or when show more is clicked
       // prevents call when navigating back to the root page /
       if (
-        (more === false && this.$store.state.inView == 0) ||
-        (more === true && this.$store.state.inView !== 0)
+        (more === false && this.$store.state.item.inView == 0) ||
+        (more === true && this.$store.state.item.inView !== 0)
       ) {
         this.$store.dispatch('fetchItems', { percall: 2 })
       }
@@ -48,22 +49,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.item-card {
-  padding-top: 0;
-  padding-bottom: 1rem;
-  &-wrap {
-    flex-wrap: wrap;
-    height: 300px;
-    overflow: scroll;
-    overflow-x: hidden;
-    &::-webkit-scrollbar {
-      width: 1em;
-    }
+.item-card-wrap {
+  flex-wrap: wrap;
+  height: 350px;
+  overflow: scroll;
+  overflow-x: hidden;
+  &::-webkit-scrollbar {
+    width: 1em;
+  }
 
-    &::-webkit-scrollbar-thumb {
-      background-color: #00d1b2;
-      outline: none;
-    }
+  &::-webkit-scrollbar-thumb {
+    background-color: #00d1b2;
+    outline: none;
   }
 }
 </style>
