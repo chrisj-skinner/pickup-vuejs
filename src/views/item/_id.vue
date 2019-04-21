@@ -13,12 +13,13 @@
           </div>
         </div>
         <div class="tile is-parent">
-          <div class="tile is-child box notification is-primary has-text-centered"></div>
+          <div class="tile is-child">
+            <figure class="image is-square">
+              <img src="https://bulma.io/images/placeholders/128x128.png">
+            </figure>
+          </div>
         </div>
       </div>
-      <figure class="image is-square">
-        <img src="https://bulma.io/images/placeholders/128x128.png">
-      </figure>
       <header>
         <h1 class="has-text-left title is-2">{{ item.title }}</h1>
         <p class="has-text-left subtitle is-4">Listed: {{ item.date }}</p>
@@ -30,8 +31,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
-import ItemService from '@/services/ItemService.js'
+import { mapState } from 'vuex'
 
 export default {
   props: {
@@ -39,24 +39,10 @@ export default {
       type: String | Number
     }
   },
-  data() {
-    return {
-      item: {}
-    }
-  },
   created() {
-    ItemService.getItem(this.id)
-      .then(response => {
-        this.item = response.data
-      })
-      .catch(error => {
-        console.log('There was an error getting item #: ' + this.id)
-      })
+    this.$store.dispatch('fetchItem', this.id)
   },
-  computed: {
-    ...mapGetters(['getItemById']),
-    ...mapState(['items'])
-  }
+  computed: mapState(['item'])
 }
 </script>
 
