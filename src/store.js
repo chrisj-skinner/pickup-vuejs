@@ -9,6 +9,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     items: [],
+    inView: 0,
     total: 0,
     categories: ['dropdown', 'Applicance', 'Clothes', 'Funiture', 'Toys']
   },
@@ -17,10 +18,17 @@ export default new Vuex.Store({
       state.items.push(item)
     },
     SET_ITEMS(state, items) {
-      state.items = items
+      if (state.items.length !== 0) {
+        state.items = state.items.concat(items)
+      } else {
+        state.items = items
+      }
     },
     SET_TOTAL(state, total) {
       state.total = total
+    },
+    SET_INVIEW(state, start) {
+      state.inView = start
     }
   },
   actions: {
@@ -29,10 +37,16 @@ export default new Vuex.Store({
         commit('ADD_ITEM', item)
       })
     },
-    fetchItems({ commit }, { perpage, page }) {
-      ItemService.getItems(perpage, page)
+    fetchItems({ commit }, { percall }) {
+      let start = 0
+      const increment = 2
+      if (this.state.inView !== start) {
+        start = this.state.inView
+      }
+      ItemService.getItems(start, percall)
         .then(response => {
           commit('SET_ITEMS', response.data)
+          commit('SET_INVIEW', start + increment)
           commit('SET_TOTAL', response.headers['x-total-count'])
         })
         .catch(error => {
