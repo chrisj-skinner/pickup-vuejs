@@ -4,18 +4,7 @@
       <ItemCard v-for="item in items" :key="item.id" :item="item" class="column is-half item-card"/>
     </div>
     <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-      <router-link
-        :to="{ name: 'index', query: { page: page - 1 }}"
-        rel="prev"
-        class="pagination-previous"
-        :disabled="prevDisabled"
-      >Previous</router-link>
-      <router-link
-        :to="{ name: 'index', query: { page: page + 1 }}"
-        rel="prev"
-        class="pagination-next"
-        :disabled="nextDisabled"
-      >Next Page</router-link>
+      <button @click="fetchItems(true)" :disabled="moreDisabled">Show more</button>
     </nav>
   </div>
 </template>
@@ -29,19 +18,27 @@ export default {
     ItemCard
   },
   created() {
-    this.$store.dispatch('fetchItems', { perpage: 2, page: this.page })
+    this.fetchItems(false)
   },
   computed: {
-    page() {
-      return parseInt(this.$route.query.page) || 1
+    moreDisabled() {
+      console.log(this.total)
+      console.log(this.items.length)
+
+      return this.total == this.items.length
     },
-    prevDisabled() {
-      return this.page === 1
-    },
-    nextDisabled() {
-      return this.total <= this.page * 2
-    },
-    ...mapState(['items', 'total'])
+    ...mapState({ items: 'items', total: 'total' })
+  },
+  methods: {
+    fetchItems(more) {
+      // prevent fetchItems from firing when using the back / home buttons
+      if (
+        (more === false && this.$store.state.inView == 0) ||
+        (more === true && this.$store.state.inView !== 0)
+      ) {
+        this.$store.dispatch('fetchItems', { percall: 2 })
+      }
+    }
   }
 }
 </script>
@@ -50,18 +47,19 @@ export default {
 .item-card {
   padding-top: 0;
   padding-bottom: 1rem;
-  // &-wrap {
-  //   max-height: 400px;
-  //   overflow: scroll;
-  //   overflow-x: hidden;
-  //   &::-webkit-scrollbar {
-  //     width: 1em;
-  //   }
+  &-wrap {
+    flex-wrap: wrap;
+    max-height: 400px;
+    overflow: scroll;
+    overflow-x: hidden;
+    &::-webkit-scrollbar {
+      width: 1em;
+    }
 
-  //   &::-webkit-scrollbar-thumb {
-  //     background-color: #00d1b2;
-  //     outline: none;
-  //   }
-  // }
+    &::-webkit-scrollbar-thumb {
+      background-color: #00d1b2;
+      outline: none;
+    }
+  }
 }
 </style>
