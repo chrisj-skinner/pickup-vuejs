@@ -72,7 +72,7 @@ export default new Vuex.Store({
       // saves an API call
       const item = getters.getItemById(id)
       if (item) {
-        commit('SET_ITEM', id)
+        commit('SET_ITEM', item)
       } else {
         commit('SET_LOADING_STATUS', 'loading')
         ItemService.getItem(id)
