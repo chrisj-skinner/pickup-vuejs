@@ -11,7 +11,8 @@ export default new Vuex.Store({
     items: [],
     inView: 0,
     total: 0,
-    categories: ['dropdown', 'Applicance', 'Clothes', 'Funiture', 'Toys']
+    categories: ['dropdown', 'Applicance', 'Clothes', 'Funiture', 'Toys'],
+    item: {}
   },
   mutations: {
     ADD_ITEM(state, item) {
@@ -29,6 +30,9 @@ export default new Vuex.Store({
     },
     SET_INVIEW(state, start) {
       state.inView = start
+    },
+    SET_ITEM(state, item) {
+      state.item = item
     }
   },
   actions: {
@@ -52,6 +56,21 @@ export default new Vuex.Store({
         .catch(error => {
           console.log('There was an error: ' + error.response)
         })
+    },
+    fetchItem({ commit, getters }, id) {
+      const item = getters.getItemById(id)
+
+      if (item) {
+        commit('SET_ITEM', id)
+      } else {
+        ItemService.getItem(id)
+          .then(response => {
+            commit('SET_ITEM', response.data)
+          })
+          .catch(() => {
+            console.log('There was an error getting item #:' + this.id)
+          })
+      }
     }
   },
   getters: {
